@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:alpine
+    container_name: forky-db
+    environment:
+      POSTGRES_HOST: ${DB_HOST}
+      POSTGRES_PORT: ${DB_PORT}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    networks:
+      - application
+
+networks:
+  application:
+
+volumes:
+  postgres-db:
